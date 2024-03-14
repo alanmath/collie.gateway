@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: collie-gateway
+
+  cloud:
+    discovery:
+      locator:
+        enabled: true
+    gateway:
+      routes:
+        - id: collie-auth
+          uri: lb://collie-auth
+          predicates:
+            - Path=/auth/**
+
+        - id: collie-account
+          uri: lb://collie-account
+          predicates:
+            - Path=/accounts/**
+
+        - id: insper
+          uri: https://www.insper.edu.br
+          predicates:
+            - Path=/
+
+management:
+  endpoints:
+    web:
+      base-path: /gateway/actuator
+      exposure:
+        include: [ 'prometheus' ]
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
+
+api:
+  endpoints:
+    open: >
+      POST /auth/register,
+      POST /auth/login,
+      ANY /auth/actuator,
+      ANY /accounts/actuator
