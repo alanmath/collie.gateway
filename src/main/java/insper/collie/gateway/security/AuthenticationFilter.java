@@ -57,6 +57,7 @@ public class AuthenticationFilter implements GlobalFilter {
                     updateRequestWithUser(exchange, response.getBody());
                     return chain.filter(exchange);
                 } else {
+                
                     throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid token.");
                 }
             });
