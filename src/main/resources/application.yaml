@@ -17,6 +17,11 @@ spring:
           uri: lb://collie-account
           predicates:
             - Path=/accounts/**
+        
+        - id: collie-microservices
+          uri: lb://collie-microservices
+          predicates:
+            - Path=/microservices/**
 
         - id: insper
           uri: https://www.insper.edu.br
@@ -43,4 +48,5 @@ api:
       POST /auth/register,
       POST /auth/login,
       ANY /auth/actuator,
-      ANY /accounts/actuator
+      ANY /accounts/actuator,
+      ANY /microservices
