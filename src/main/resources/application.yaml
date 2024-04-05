@@ -27,6 +27,11 @@ spring:
           uri: lb://collie-company
           predicates:
             - Path=/company/**
+        
+        - id: collie-squad
+          uri: lb://collie-squad
+          predicates:
+            - Path=/squad/**
 
         - id: insper
           uri: https://www.insper.edu.br
@@ -54,4 +59,5 @@ api:
       POST /auth/login,
       ANY /auth/actuator,
       ANY /accounts/actuator,
-      POST /company
+      POST /company,
+      POST /squad
