@@ -23,6 +23,11 @@ spring:
           predicates:
             - Path=/microservices/**
 
+        - id: collie-company
+          uri: lb://collie-company
+          predicates:
+            - Path=/company/**
+
         - id: insper
           uri: https://www.insper.edu.br
           predicates:
@@ -49,4 +54,4 @@ api:
       POST /auth/login,
       ANY /auth/actuator,
       ANY /accounts/actuator,
-      ANY /microservices
+      POST /company
