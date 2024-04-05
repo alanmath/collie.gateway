@@ -63,4 +63,7 @@ api:
       GET /company/**,
       PUT /company/**,
       DELETE /company/**,
-      POST /squad
+      POST /squad,
+      GET /squad/**,
+      PUT /squad/**,
+      DELETE /squad/**,
