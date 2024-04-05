@@ -60,6 +60,7 @@ api:
       ANY /auth/actuator,
       ANY /accounts/actuator,
       POST /company,
+      GET /company/exists/**,
       GET /company/**,
       PUT /company/**,
       DELETE /company/**,
