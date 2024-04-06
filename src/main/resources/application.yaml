@@ -59,6 +59,8 @@ api:
       POST /auth/login,
       ANY /auth/actuator,
       ANY /accounts/actuator,
+      GET /accounts/exists/{id},
+      GET /accounts/{id},
       POST /company,
       GET /company/exists/**,
       GET /company/**,
@@ -67,4 +69,4 @@ api:
       POST /squad,
       GET /squad/**,
       PUT /squad/**,
-      DELETE /squad/**,
+      DELETE /squad/**
