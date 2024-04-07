@@ -67,4 +67,21 @@ api:
       POST /squad,
       GET /squad/**,
       PUT /squad/**,
-      DELETE /squad/**,
+      ANY /squad/**,
+      ANY **/v3/api-docs,
+      ANY **/swagger-ui.html,
+      ANY **/swagger-ui/**,
+      ANY **/webjars/**,
+      ANY **/swagger-resources/**,
+      ANY **/swagger-resources,
+      ANY /squad/swagger-ui.html,
+      ANY /squad/v3/api-docs,
+      ANY /squad/swagger-ui/**,
+      ANY /squad/webjars/**,
+      ANY /squad/swagger-resources/**,
+      ANY /squad/swagger-resources,
+      ANY /squad/swagger-ui/index.html,
+      
+
+
+
