@@ -59,6 +59,8 @@ api:
       POST /auth/login,
       ANY /auth/actuator,
       ANY /accounts/actuator,
+      GET /accounts/exists/{id},
+      GET /accounts/{id},
       POST /company,
       GET /company/exists/**,
       GET /company/**,
@@ -81,7 +83,4 @@ api:
       ANY /squad/swagger-resources/**,
       ANY /squad/swagger-resources,
       ANY /squad/swagger-ui/index.html,
-      
-
-
 
