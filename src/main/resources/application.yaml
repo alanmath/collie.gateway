@@ -67,6 +67,7 @@ api:
       PUT /company/**,
       DELETE /company/**,
       POST /squad,
+      GET /squad/exists/**,
       GET /squad/**,
       PUT /squad/**,
       DELETE /microservices/**,
