@@ -60,12 +60,14 @@ api:
       ANY /auth/actuator,
       ANY /accounts/actuator,
       ANY /squad/swagger**,
-      ANY /squad/v3/api-docs,
+      ANY /squad/v3**,
       ANY /company/swagger**,
-      ANY /company/v3/api-docs,
+      ANY /company/v3**,
       ANY /microservices/swagger**,
-      ANY /microservices/v3/api-docs,
+      ANY /microservices/v3**,
+      ANY /accounts/swagger**,
+      ANY /accounts/v3**,
       ANY /auth/swagger**,
-      ANY /auth/v3/api-docs,
+      ANY /auth/v3**,
 
       

@@ -1,5 +1,7 @@
 package insper.collie.gateway.security;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -14,10 +16,23 @@ import org.springframework.web.server.ServerWebExchange;
 
 import insper.collie.auth.SolveIn;
 import insper.collie.auth.SolveOut;
+import jakarta.validation.OverridesAttribute.List;
 import reactor.core.publisher.Mono;
+
 
 @Component
 public class AuthenticationFilter implements GlobalFilter {
+
+    private static final Set<String> adminRoutes = Set.of(
+        "/company/delete/**",
+        "/company/update/**",
+        "/squad/delete/**",
+        "/squad/update/**",
+        "/microservices/delete/**",
+        "/microservices/update/**"
+    );
+
+
 
     @Autowired
     private RouterValidator routerValidator;
@@ -54,7 +69,12 @@ public class AuthenticationFilter implements GlobalFilter {
             .flatMap(response -> {
                 if (response != null && response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                     // atualizar o cabecalho da requisicao com o usuario logado
+                    SolveOut user = response.getBody();
                     updateRequestWithUser(exchange, response.getBody());
+                    if (adminRoutes.stream().anyMatch(route -> request.getURI().getPath().matches(route)) &&
+                        !"ADMIN".equals(user.role())) {
+                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access Denied.");
+                    }
                     return chain.filter(exchange);
                 } else {
                 
