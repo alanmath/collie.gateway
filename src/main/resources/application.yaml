@@ -69,5 +69,6 @@ api:
       ANY /accounts/v3**,
       ANY /auth/swagger**,
       ANY /auth/v3**,
+      ANY /microservices/**,
 
       
