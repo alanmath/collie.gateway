@@ -17,10 +17,11 @@ spec:
           image: alanmath/gateway:latest
           ports:
             - containerPort: 8080
+          env:
 
-            # - name: DISCOVERY_HOST
-            #   valueFrom:
-            #     configMapKeyRef:
-            #       name: discovery-configmap
-            #       key: DISCOVERY_HOST
+            - name: DISCOVERY_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: discovery-configmap
+                  key: DISCOVERY_HOST
 
