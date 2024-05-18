@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         K8S_PORT = 64606
+        TARGET = 'aws'
     }
     stages {
         stage ('Jenkins Gateway') {
@@ -44,5 +45,15 @@ pipeline {
                 }
             }
         }
+        stage('Deploy on AWS k8s') {
+            when {
+                environment name: 'TARGET', value 'aws'
+            }
+            steps {
+                    sh "kubectl apply -f ./k8s/deployment.yaml"
+                    sh "kubectl apply -f ./k8s/service.yaml"
+            }
+        }
     }
 }
+
