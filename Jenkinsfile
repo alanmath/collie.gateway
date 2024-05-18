@@ -53,8 +53,10 @@ pipeline {
                 environment name: 'TARGET', value: 'aws'
             }
             steps {
+                withCredentials([string(credentialsId: 'my_kubernetes', variable: 'api_token')]) {
                     sh "kubectl apply -f ./k8s/deployment.yaml --validate=false"
                     sh "kubectl apply -f ./k8s/service.yaml --validate=false"
+                }
             }
         }
     }
