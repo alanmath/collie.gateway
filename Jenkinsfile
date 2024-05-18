@@ -38,6 +38,9 @@ pipeline {
             }
         }
         stage('Deploy on k8s') {
+            when { 
+                environment name: 'TARGET', value: 'local' 
+            }
             steps {
                 withCredentials([string(credentialsId: 'my_kubernetes', variable: 'api_token')]) {
                     sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT} --insecure-skip-tls-verify=true apply -f ./k8s/deployment.yaml --validate=false"
