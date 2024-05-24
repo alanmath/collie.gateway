@@ -3,36 +3,41 @@ spring:
     name: collie-gateway
 
   cloud:
-    discovery:
-      locator:
-        enabled: true
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns: "http://localhost:*"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowed-headers:
+              - "*"
+            allow-credentials: true
       routes:
         - id: collie-auth
           uri: lb://collie-auth
           predicates:
             - Path=/auth/**
-
         - id: collie-account
           uri: lb://collie-account
           predicates:
             - Path=/accounts/**
-        
         - id: collie-microservices
           uri: lb://collie-microservices
           predicates:
             - Path=/microservices/**
-
         - id: collie-company
           uri: lb://collie-company
           predicates:
             - Path=/company/**
-        
         - id: collie-squad
           uri: lb://collie-squad
           predicates:
             - Path=/squad/**
-
         - id: insper
           uri: https://www.insper.edu.br
           predicates:
@@ -70,5 +75,8 @@ api:
       ANY /auth/swagger**,
       ANY /auth/v3**,
       ANY /microservices/**,
-
-      
+      ANY /accounts**,
+      ANY /auth**,
+      ANY /squad**,
+      ANY /company**,
+      ANY /microservices**,
